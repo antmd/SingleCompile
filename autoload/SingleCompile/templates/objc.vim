@@ -20,13 +20,14 @@
 function! SingleCompile#templates#objc#Initialize()
     call SingleCompile#SetCompilerTemplate('objc', 'clang',
                 \ 'the Clang C and Objective-C compiler', 'clang',
-                \ '-g -o $(FILE_TITLE)$', g:SingleCompile_common_run_command)
+                \ '-fobjc-arc -arch x86_64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -o $(FILE_TITLE)$',
+                \ g:SingleCompile_common_run_command)
     call SingleCompile#SetOutfile('objc', 'clang', g:SingleCompile_common_out_file)
     call SingleCompile#SetCompilerTemplate('objc', 'gcc',
                 \'GNU Object-C Compiler', 'gcc', '-g -o $(FILE_TITLE)$',
                 \g:SingleCompile_common_run_command)
     call SingleCompile#SetOutfile('objc', 'gcc', g:SingleCompile_common_out_file)
-    call SingleCompile#SetPriority('objc', 'gcc', 80)
+    call SingleCompile#SetPriority('objc', 'clang', 80)
 endfunction
 
 "vim703: cc=78
